@@ -1,8 +1,6 @@
-![](https://img.shields.io/badge/Microverse-blueviolet)
-
 # Blog app - creating a data model
 
-> Description the project.
+> This Blog app is a classic example of a blog website. I have created a fully functional website that will show the list of posts and empower readers to interact with them by adding comments and liking posts.
 
 ## Built With
 
@@ -13,6 +11,8 @@
 ## Live Demo (if available)
 
 [Live Demo Link](https://livedemo.com)
+
+![](../Blog-App/app/assets/images/ERD-blog-app.png)
 
 ## Getting Started
 
