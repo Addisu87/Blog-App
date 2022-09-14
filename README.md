@@ -6,7 +6,7 @@
 
 - Major languages -- Ruby
 - Frameworks -- Ruby on Rails
-- Technologies used -- SQL
+- Technologies used -- PostgreSQL
 
 ## Live Demo (if available)
 
@@ -34,6 +34,21 @@ To edit this project:
 
 - Open the repository you cloned with a code editor that you like.
 - Edit the code as you want.
+
+## Create the database
+
+- rails db:create # or
+- rake db:create
+
+## Starting up the webserver
+
+- rails s # or
+- rails server
+
+## Generate Schema
+
+- To push the migration into the database
+- rails db:migrate
 
 👤 **Addisu Haile**
 
