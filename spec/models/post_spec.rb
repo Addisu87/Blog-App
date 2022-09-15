@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 RSpec.describe Post, type: :model do
   before(:all) do
@@ -7,8 +7,8 @@ RSpec.describe Post, type: :model do
     @post = Post.new(title: 'Post Title', text: 'Post text', likes_counter: 2, comments_counter: 3, author: @user)
   end
 
-  # it 'title should be present and not empty' do 
-  #   @post.title = nil
-  #   expect(@post).to_not be_valid
-  # end
+  it 'title should be present and not empty' do 
+    @post.title = nil
+    expect(@post).to_not be_valid
+  end
 end
