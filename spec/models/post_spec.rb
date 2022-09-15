@@ -17,7 +17,7 @@ RSpec.describe Post, type: :model do
     expect(@post).to be_valid
   end
 
-  it 'should have title maximum length of characters 250' do 
+  it 'should have title maximum length of characters 250' do
     @post.title = 'a' * 251
     expect(@post).to_not be_valid
 
@@ -46,7 +46,7 @@ RSpec.describe Post, type: :model do
     expect(@post).to be_valid
   end
 
-  it 'should have likes_counter numericality' do 
+  it 'should have likes_counter numericality' do
     @post.likes_counter = 'Addisu'
     expect(@post).to_not be_valid
 
