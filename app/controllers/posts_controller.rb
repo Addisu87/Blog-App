@@ -1,4 +1,14 @@
 class PostsController < ApplicationController
+  http_basic_authenticate_with name: 'Addisu', password: '1987', except: %i[index show]
+
+  def index
+    @posts = Post.all
+  end
+
+  def show
+    @post = Post.find(params[:id])
+  end
+
   def new
     @post = Post.new
   end
@@ -11,14 +21,6 @@ class PostsController < ApplicationController
     else
       render 'new'
     end
-  end
-
-  def show
-    @post = Post.find(params[:id])
-  end
-
-  def index
-    @posts = Post.all
   end
 
   def edit
