@@ -8,11 +8,11 @@ RSpec.describe 'Users', type: :request do
     end
   end
 
-  describe 'GET /show' do 
-    it 'returns the correct response' do 
-      get '/users', params: { 
+  describe 'GET /show' do
+    it 'returns the correct response' do
+      get '/users', params: {
         id: 101
-       }
+      }
 
       expect(response).to have_http_status(200)
     end
