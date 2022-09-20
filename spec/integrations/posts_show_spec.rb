@@ -4,9 +4,9 @@ RSpec.describe 'Show post page: ', type: :feature do
   before(:each) do
     @user = User.create(name: 'Addisu', photo: 'img_1.png', bio: 'Physics teacher', posts_counter: 0)
     @user.save!
-  
+
     @post_one = Post.create(title: 'First post', text: 'Hello world!', id: 1, comments_counter: 0, likes_counter: 0)
-  
+
     @comment_one = Comment.create(post: @post, user: @user, text: 'First comment')
     @comment_one.save!
     @comment_two = Comment.create(post: @post, user: @user, text: 'Second comment')

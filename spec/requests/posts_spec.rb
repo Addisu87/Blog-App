@@ -14,11 +14,11 @@ RSpec.describe 'Posts', type: :request do
       expect(response).to have_http_status(:ok)
     end
 
-    it "renders 'index' 'template" do 
+    it "renders 'index' 'template" do
       expect(response).to render_template('index')
     end
 
-    it 'does not render a differnet template' do 
+    it 'does not render a differnet template' do
       expect(response).to_not render_template('show')
     end
   end

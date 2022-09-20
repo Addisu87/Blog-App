@@ -8,17 +8,17 @@ RSpec.describe 'Users', type: :request do
     end
   end
 
-  describe 'GET #index' do 
+  describe 'GET #index' do
     before(:example) { get users_path }
     it 'is a success - 200 code' do
       expect(response).to have_http_status(:ok)
     end
 
-    it "renders 'index' 'template" do 
+    it "renders 'index' 'template" do
       expect(response).to render_template('index')
     end
 
-    it 'does not render a differnet template' do 
+    it 'does not render a differnet template' do
       expect(response).to_not render_template('show')
     end
   end

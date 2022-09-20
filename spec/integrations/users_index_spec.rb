@@ -21,10 +21,10 @@ RSpec.describe 'user index view', type: :feature do
       expect(page).to have_css('img[src*="img_2.png"]')
     end
 
-    it 'Shows the number of posts of each user' do 
+    it 'Shows the number of posts of each user' do
       visit root_path
       expect(page).to have_content('2')
       expect(page).to have_content('3')
     end
-  end 
+  end
 end
