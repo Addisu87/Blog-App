@@ -9,7 +9,10 @@ RSpec.describe 'Users', type: :request do
   end
 
   describe 'GET #index' do
-    before(:example) { get users_path }
+    before(:each) do
+      get users_path 
+    end 
+    
     it 'is a success - 200 code' do
       expect(response).to have_http_status(:ok)
     end
