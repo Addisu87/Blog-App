@@ -1,13 +1,36 @@
-<%= render partial: 'users/user', object: @user %>
-<%= @posts.each do |post| %>
-  <a href="/users/<%= @user.id %>/posts/<%= post.id%>">
-    <%= render partial: 'posts/post', object: post %>
-  </a>
-  <% if post.recent_comments.length > 0 %>
-    <div class="post_data flex-row">
-      <div class="post_info">
-        <%= render partial: 'shared/recentComments', locals: {collection: post.recent_comments, post: post}%>
-      </div>
+<section class="container">
+  <div class="user-box">
+    <img class="image-user" src=<%= @user.photo %> alt="user"/>
+    <div class="user-info">
+      <p class="user-name"><%= @user.name %></p>
+      <p class="user-post">Number of posts: <%= @user.posts_counter%></p>
+    </div>
+  </div>
+  <% @posts.each do |post| %>
+    <div class="post-info">
+      <%= link_to user_post_path(@user.id, post.id) do %>
+        <p class="post-title">Post : <%= post.title %> by <%= post.author.name %></p>
+        <p class="post-text"><%= post.text %></p>
+        <p class="post-text-2">Comments: <span><%= post.comments_counter || 0 %>, Likes: <%= post.likes_counter || 0 %></span></p>
+      <% end %>
+    </div>
+    <div class="comment-info">
+      <% post.recent_comments.each do |comment| %>
+        <p>
+          <span>
+            <%= comment.author.name %>:
+          </span>
+          <span>
+            <%= comment.text %>
+          </span>
+        </p>
+      <% end %>
     </div>
   <% end %>
-<% end %>
+  <div class="button-user">
+    <%= button_to 'Add New Post', new_user_post_url(id: @user.id), method: :get, class: "button"%>
+    <button class="button">
+      Pagination
+    </button>
+  </div>
+</section>
