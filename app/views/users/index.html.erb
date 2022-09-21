@@ -1,1 +1,7 @@
-<%= link_to "My Blog", controller: "users" %>
+<h1 class = "center_content">Welcome to my blog</h1>
+<% @users.each do |user| %>
+  <a href="/users/<%= user.id %>" >
+    <%= render partial: 'user', object: user %>
+  </a>
+<% end %>
+<h2 class="center_content"><%= @users.count %>Online Users</h2>

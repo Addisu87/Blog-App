@@ -1,1 +1,18 @@
-<p>show users</p>
+<%= render partial: 'user', object: @user %>
+<a href="/users/"><button>See all posts</button></a>
+<div class="bio_container">
+  <%= @user.bio%>
+</div>
+<% flash.each do |type, msg| %>
+  <div class="">
+    <% msg %>
+  </div>
+<% end %>
+<% @posts.each do |post| %>
+  <a href="/users/<%= @user.id %>/posts/<%= post.id %>">
+    <%= render partial: 'posts/post', object: post %>
+  </a>
+  <% if can? :destroy, post %>
+    <%= button_to 'Delete', destroy_post_path(@user.id, post.id), method: :post %>
+  <% end %>
+<% end %>

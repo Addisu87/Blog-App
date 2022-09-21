@@ -1,22 +1,13 @@
-<%= link_to 'New post', new_post_path %>
-
-<h1>Listing Posts</h1>
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Text</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
- 
-<% @posts.each do |post| %>
-  <tr>
-    <td><%= post.title %></td>
-    <td><%= post.text %></td>
-    <td><%= link_to 'Show', post_path(post) %></td>
-    <td><%= link_to 'Edit', edit_post_path(post) %></td>
-    <td><%= link_to 'Destroy', post_path(post), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+<%= render partial: 'users/user', object: @user %>
+<%= @posts.each do |post| %>
+  <a href="/users/<%= @user.id %>/posts/<%= post.id%>">
+    <%= render partial: 'posts/post', object: post %>
+  </a>
+  <% if post.recent_comments.length > 0 %>
+    <div class="post_data flex-row">
+      <div class="post_info">
+        <%= render partial: 'shared/recentComments', locals: {collection: post.recent_comments, post: post}%>
+      </div>
+    </div>
+  <% end %>
 <% end %>
-</table>
