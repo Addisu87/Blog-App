@@ -75,3 +75,6 @@ group :test do
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
+
+# Add the bootstrap_form gem
+gem "bootstrap_form", "~> 5.1"

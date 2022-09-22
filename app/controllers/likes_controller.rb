@@ -1,14 +1,20 @@
 class LikesController < ApplicationController
-  def create
-    @post = Post.find(params[:post_id])
-    @like = @post.likes.create(params[:id])
-    redirect_to post_path(@post)
+  def new
+    @like = Like.new
+    @user = current_user
   end
 
-  def destroy
-    @post = Post.find(params[:post_id])
-    @like = @post.likes.find(params[:id])
-    @like.destroy
-    redirect_to post_path(@post)
+  def create
+    @post = Post.find(params[:post_id] || params[:id])
+    @like = Like.new(post_id: @post.id, author_id: current_user.id)
+    @like.author_id = current_user.id
+
+    respond_to do |format|
+      if @like.save
+        format.html { redirect_to user_post_path(current_user, @post), notice: 'Post was successfully created.' }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+      end
+    end
   end
 end
