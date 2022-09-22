@@ -77,4 +77,4 @@ group :test do
 end
 
 # Add the bootstrap_form gem
-gem "bootstrap_form", "~> 5.1"
+gem 'bootstrap_form', '~> 5.1'
