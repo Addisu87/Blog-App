@@ -10,7 +10,9 @@
   <div class="button-user">
     <ul>
       <li><%= button_to "Edit", user_edit_post_path(@post.author, @post), class="button" %></li>
+      | 
       <li><%= button_to "Destroy", user_post_path(@post), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }%></li>
+      | 
       <li><%= button_to "Back", user_path(@post.author, @post), method: :get, class: "button" %></li>
     </ul>
     <div >
@@ -22,7 +24,9 @@
   <%# add comments %>
   <div class="comment-info">
     <h2>Comments</h2>
-    <%= render @post.comments %>
+    <% @post.comments.each do |comment| %>
+      <%= render @post.comments %>
+    <% end %>
   </div>
   <div class="comment-info">
     <h2>Add a comment: </h2>
