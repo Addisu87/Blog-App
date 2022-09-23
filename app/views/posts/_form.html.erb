@@ -1,4 +1,4 @@
-<%= form_with model: post, url: user_posts_path, method: :post, local: true, class: "form-control" do |form| %>
+<%= form_with model: @post, url: user_posts_path, method: :post, scope: :post, class: "form-control" do |form| %>
   <%= form.hidden_field :comments_counter, value: 0 %>
   <%= form.hidden_field :likes_counter, value: 0 %>
   <div class="mb-3 mt-3">
@@ -16,6 +16,6 @@
     <% end %>
   </div>
   <div>
-    <%= form.submit class: "button" %>
+    <%= form.submit "save", class: "button" %>
   </div>
 <% end %>

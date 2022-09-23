@@ -13,16 +13,16 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
-    # @user = current_user
   end
 
   def create
     @post = Post.new(post_params)
-    @post.author_id = current_user.id
+    @user = current_user
+    @post.author = @user
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to user_post_url(current_user, @post), notice: 'Post was successfully created.' }
+        format.html { redirect_to user_post_url(@user, @post), notice: 'Post was successfully created.' }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
