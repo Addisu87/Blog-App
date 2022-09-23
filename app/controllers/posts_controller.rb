@@ -4,6 +4,7 @@ class PostsController < ApplicationController
   def index
     @user = User.find(params[:user_id])
     @posts = @user.posts.includes(:comments)
+    # @posts = Post.all
   end
 
   def show
@@ -12,19 +13,19 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    # @user = current_user
   end
 
   def create
     @post = Post.new(post_params)
     @post.author_id = current_user.id
 
-    if @post.save
-      @post.update_user_post_counter(params[:user_id])
-      redirect_to user_post_path(@user.id)
-      flash[:notice] = 'Your comment was successfully created'
-    else
-      redirect_to new_user_post_path(@user.id)
-      flash[:notice] = 'An error has occurred while creating the post'
+    respond_to do |format|
+      if @post.save
+        format.html { redirect_to user_post_url(current_user, @post), notice: 'Post was successfully created.' }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -46,7 +47,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @author = @post.author
     @author.decrement!(:posts_counter)
-    @post.destroy!
+    @post.destroy
 
     redirect_to user_posts_path(id: @author.id), notice: 'Post was successfully deleted'
   end
@@ -54,6 +55,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:tittle, :text, :comments_counter, :likes_counter)
+    params.require(:post).permit(:tittle, :text)
   end
 end

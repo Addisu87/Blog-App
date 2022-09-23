@@ -1,0 +1,14 @@
+<% @post.comments.each do |comment| %>
+  <p>
+    <span>
+      <%= comment.author.name %>:
+    </span>
+    <span>
+      <strong>Comment:</strong>
+      <%= comment.text %>
+    </span>
+  </p>
+  <p>
+    <%= link_to "Destroy Comment", [comment.post, comment], data: { turbo_method: :delete, turbo_method: "Are you sure?"} %>
+  </p>
+<% end %>
