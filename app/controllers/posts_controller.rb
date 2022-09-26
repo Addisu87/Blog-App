@@ -2,9 +2,8 @@ class PostsController < ApplicationController
   http_basic_authenticate_with name: 'Addisu', password: '1987', except: %i[index show]
 
   def index
-    @user = User.find(params[:user_id])
+    @user = current_user
     @posts = @user.posts.includes(:comments)
-    # @posts = Post.all
   end
 
   def show
@@ -37,7 +36,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
 
     if @post.update(post_params)
-      redirect_to user_post_path(current_user, @post)
+      redirect_to user_post_path(@user, @post)
     else
       render :edit, status: :unprocessable_entity
     end

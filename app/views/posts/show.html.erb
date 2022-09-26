@@ -24,8 +24,8 @@
   <%# add comments %>
   <div class="comment-info">
     <h2>Comments</h2>
-    <% @post.comments.each do |comment| %>
-      <%= render @post.comments %>
+    <% @post.recent_comments.each do |comment| %>
+      <%= render @post.recent_comments %>
     <% end %>
   </div>
   <div class="comment-info">
