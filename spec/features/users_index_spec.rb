@@ -1,12 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe 'user index view', type: :feature do
-  describe 'GET index' do
+  describe 'GET /users/index' do
     before(:each) do
-      @user_one = User.create(name: 'Addisu', photo: 'img_1.png', bio: 'Physics teacher', posts_counter: 2)
+      @user_one = User.create(name: 'Addisu', photo: 'img_1.png', bio: 'Full-Stack Developer', posts_counter: 2)
       @user_one.save!
-      @user_two = User.create(name: 'Yonas', photo: 'img_2.png', bio: 'Front-end developer', posts_counter: 3)
+      @user_two = User.create(name: 'Yonas', photo: 'img_2.png', bio: 'Full-Stack Developer', posts_counter: 3)
       @user_two.save!
+
     end
 
     it 'Show username of each user' do
