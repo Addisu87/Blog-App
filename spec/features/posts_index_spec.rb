@@ -6,13 +6,18 @@ RSpec.describe 'posts#index', type: :feature do
     @user.save!
     visit root_path
 
-    @post_one = Post.create(title: 'First post', text: 'Hello world!', id: 1, comments_counter: 0, likes_counter: 0)
-    @post_two = Post.create(title: 'Second post', text: 'Quantum Mechanics!', id: 2, comments_counter: 0,
+    @post_one = Post.create(author: @user, title: 'First post', text: 'Hello world!', id: 1, comments_counter: 0, likes_counter: 0)
+    @post_two = Post.create(author: @user, title: 'Second post', text: 'Quantum Mechanics!', id: 2, comments_counter: 0,
                             likes_counter: 0)
 
     @comment_one = Comment.create(title: 'First comment', author: User.first, post: Post.first)
     @comment_two = Comment.create(title: 'Second comment', author: User.first, post: Post.first)
     visit(user_path(id: @user))
+  end
+
+  it 'Shows the uses profile picture' do
+    visit(user_posts_path(@user.id))
+    expect(page).to have_css('img[src*="img_1.png"]')
   end
 
   it 'shows username of the user' do
@@ -29,5 +34,16 @@ RSpec.describe 'posts#index', type: :feature do
   it 'shows post title' do
     visit(user_posts_path(@user.id))
     expect(page).to have_content('First post')
+  end
+
+  it 'shows post\' text' do
+    visit(user_posts_path(@user.id))
+    expect(page).to have_content('Hello world!')
+  end
+
+  it 'redirects to the post\'s show page when clicked' do
+    click_on 'First post'
+    expect(page).to have_current_path user_path(@user)
+    expect(page).to have_content('Hello world!')
   end
 end
