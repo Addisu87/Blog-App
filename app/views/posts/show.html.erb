@@ -2,19 +2,14 @@
   <div class="post-info">
     <div class="post-title-box">
       <p class="post-title">Post : <%= @post.title %> by <%= @post.author.name %></p>
-      <p class="comment-text">Comments: <%= @post.comments_counter || 0 %>, Likes: <%= @post.likes_counter || 0 %></p>
+      <p class="comment-text">Comments: <%= @post.comments_counter || 0 %> </p>
+      <p class="comment-text"> Likes: <%= @post.likes_counter || 0 %></p>
     </div>
     <p><%= @post.text %></p>
   </div>
   <%# add linked buttons %>
   <div class="button-user">
-    <ul>
-      <li><%= button_to "Edit", user_edit_post_path(@post.author, @post), class="button" %></li>
-      | 
-      <li><%= button_to "Destroy", user_post_path(@post), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }%></li>
-      | 
-      <li><%= button_to "Back", user_path(@post.author, @post), method: :get, class: "button" %></li>
-    </ul>
+    <p><%= button_to "Back", user_posts_path(@user), method: :get, class: "button" %></p>
     <div >
       <%= form_with model: @like,  url: "/users/#{params['user_id']}/posts/#{params['id']}/likes", method: :post , local: true do |form|%>
         <%= form.submit "Like", class: 'button' %>
@@ -30,7 +25,6 @@
   </div>
   <div class="comment-info">
     <h2>Add a comment: </h2>
-    <%# <%= render "comments/form" %> %>
     <%= render partial: "comments/form", locals: { comment:  Comment.new, user: @post.author, post:  @post} %>
   </div>
 </section>

@@ -5,7 +5,15 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     @comment.author = @user
     @comment.post = @post
-    redirect_to user_post_path(@user, @post) if @comment.save
+    respond_to do |format|
+      if @comment.save!
+        format.html do
+          redirect_to user_post_url(@user, @post), notice: 'Comment was successfully created.'
+        end
+      else
+        format.html { render :new, status: :unprocessable_entity }
+      end
+    end
   end
 
   def destroy
