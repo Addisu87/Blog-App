@@ -26,5 +26,11 @@ RSpec.describe 'user index view', type: :feature do
       expect(page).to have_content('2')
       expect(page).to have_content('3')
     end
+
+    it 'redirects to the user\'s show page when clicked' do
+      click_on 'Addisu'
+      expect(page).to have_current_path user_path(@user_one)
+      expect(page).to have_content('Physics teacher')
+    end
   end
 end
