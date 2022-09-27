@@ -56,6 +56,12 @@ To edit this project:
 - Twitter: [@AddisuTedla](https://twitter.com/AddisuTedla)
 - LinkedIn: [Addisu Tedla](www.linkedin.com/in/addisu-tedla/)
 
+👤 **Jesús Vázquez**
+
+- GitHub: [@jevazquezb](https://github.com/jevazquezb)
+- Twitter: [@javb_1187](https://twitter.com/javb_1187)
+- LinkedIn: [@jevazquezb](https://www.linkedin.com/in/jevazquezb)
+
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
