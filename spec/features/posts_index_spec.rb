@@ -10,8 +10,10 @@ RSpec.describe 'posts#index', type: :feature do
     @post_two = Post.create(title: 'Second post', text: 'Quantum Mechanics!', id: 2, comments_counter: 0,
                             likes_counter: 0)
 
-    @comment_one = Comment.create(title: 'First comment', author: User.first, post: Post.first)
-    @comment_two = Comment.create(title: 'Second comment', author: User.first, post: Post.first)
+    # @comment_one = Comment.create(title: 'First comment', author: User.first, post: Post.first)
+    # @comment_two = Comment.create(title: 'Second comment', author: User.first, post: Post.first)
+    @comment_one = Comment.create(post: @post, author: @user, text: 'First comment')
+    @comment_one.save!
     visit(user_path(id: @user))
   end
 

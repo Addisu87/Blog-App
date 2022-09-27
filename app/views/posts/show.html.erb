@@ -20,7 +20,7 @@
   <div class="comment-info">
     <h2>Comments</h2>
     <% @post.recent_comments.each do |comment| %>
-      <%= render @post.recent_comments %>
+      <%= render comment %>
     <% end %>
   </div>
   <div class="comment-info">
