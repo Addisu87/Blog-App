@@ -15,11 +15,6 @@ RSpec.describe 'posts#index', type: :feature do
     visit(user_path(id: @user))
   end
 
-  it 'Shows the uses profile picture' do
-    visit(user_posts_path(@user.id))
-    expect(page).to have_css('img[src*="img_1.png"]')
-  end
-
   it 'shows username of the user' do
     visit(user_posts_path(@user.id))
     expect(page).to have_content('Addisu')
@@ -34,16 +29,5 @@ RSpec.describe 'posts#index', type: :feature do
   it 'shows post title' do
     visit(user_posts_path(@user.id))
     expect(page).to have_content('First post')
-  end
-
-  it 'shows post\' text' do
-    visit(user_posts_path(@user.id))
-    expect(page).to have_content('Hello world!')
-  end
-
-  it 'redirects to the post\'s show page when clicked' do
-    click_on 'First post'
-    expect(page).to have_current_path user_path(@user)
-    expect(page).to have_content('Hello world!')
   end
 end
