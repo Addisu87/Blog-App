@@ -7,7 +7,6 @@ RSpec.describe 'user index view', type: :feature do
       @user_one.save!
       @user_two = User.create(name: 'Yonas', photo: 'img_2.png', bio: 'Full-Stack Developer', posts_counter: 3)
       @user_two.save!
-
     end
 
     it 'Show username of each user' do
