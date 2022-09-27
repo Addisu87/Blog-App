@@ -11,8 +11,8 @@ RSpec.describe 'posts#index', type: :feature do
     @post_two = Post.create(title: 'Second post', text: 'Quantum Mechanics!', id: 2, comments_counter: 0,
                             likes_counter: 0, author: @user_one)
 
-    @comment_one = Comment.create(author: User.first, post: Post.first)
-    @comment_two = Comment.create(author: User.first, post: Post.first)
+    @comment_one = Comment.create(author: User.first, post: Post.first, text: 'Rails is awesome!')
+    @comment_two = Comment.create(author: User.first, post: Post.first, text: 'Rails is a nice framework!')
   end
 
   it 'Shows the uses profile picture' do
@@ -36,9 +36,27 @@ RSpec.describe 'posts#index', type: :feature do
     expect(page).to have_content('First post')
   end
 
-  it 'shows post\' text' do
+  it 'shows post\'s text' do
     visit(user_posts_path(@user_one.id))
     expect(page).to have_content('Hello world!')
+  end
+
+  it 'shows number of posts by user' do
+    visit(user_posts_path(@user_one.id))
+    @user = User.first
+    expect(page).to have_content(@user.posts_counter)
+  end
+
+  it 'can see how many comments a post has.' do
+    visit(user_posts_path(@user_one.id))
+    @post = Post.first
+    expect(page).to have_content(@post.comments_counter)
+  end
+
+  it 'can see how many likes a post has.' do
+    visit(user_posts_path(@user_one.id))
+    @post = Post.first
+    expect(page).to have_content(@post.likes_counter)
   end
 
   it 'redirects to the post\'s show page when clicked' do
