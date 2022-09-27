@@ -56,6 +56,12 @@ To edit this project:
 - Twitter: [@AddisuTedla](https://twitter.com/AddisuTedla)
 - LinkedIn: [Addisu Tedla](www.linkedin.com/in/addisu-tedla/)
 
+👤 **Elson Otake**
+
+- GitHub: [@elsonotake](https://github.com/elsonotake)
+- Twitter: [@elsonotake](https://twitter.com/elsonotake)
+- LinkedIn: [elsonotake](https://linkedin.com/in/elsonotake)
+
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
