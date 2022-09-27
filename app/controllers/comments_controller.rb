@@ -1,14 +1,19 @@
 class CommentsController < ApplicationController
-  def new
-    @comment = Commment.new
-    @user = current_user
-  end
-
   def create
     @post = Post.find(params[:post_id])
-    @comment = @post.comments.create(comment_params)
-    @comment.author_id = current_user.id
-    redirect_to user_post_path(user_id: @post.author_id, id: @post.id)
+    @user = current_user
+    @comment = Comment.new(comment_params)
+    @comment.author = @user
+    @comment.post = @post
+    respond_to do |format|
+      if @comment.save!
+        format.html do
+          redirect_to user_post_url(@user, @post), notice: 'Comment was successfully created.'
+        end
+      else
+        format.html { render :new, status: :unprocessable_entity }
+      end
+    end
   end
 
   def destroy
@@ -21,6 +26,6 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:text, :status)
+    params.require(:comment).permit(:text, :author, :post)
   end
 end

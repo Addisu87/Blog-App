@@ -2,31 +2,29 @@
   <div class="post-info">
     <div class="post-title-box">
       <p class="post-title">Post : <%= @post.title %> by <%= @post.author.name %></p>
-      <p class="comment-text">Comments: <%= @post.comments_counter || 0 %>, Likes: <%= @post.likes_counter || 0 %></p>
+      <p class="comment-text">Comments: <%= @post.comments_counter || 0 %> </p>
+      <p class="comment-text"> Likes: <%= @post.likes_counter || 0 %></p>
     </div>
     <p><%= @post.text %></p>
   </div>
-  <div class="comment-info">
-    <% @post.recent_comments.each do |comment| %>
-      <div>
-        <p>
-          <span>
-            <%= comment.author.name %>:
-          </span>
-          <span>
-            <%= comment.text %>
-          </span>
-        </p>
-      </div>
-    <% end %>
-  </div>
+  <%# add linked buttons %>
   <div class="button-user">
-    <%= button_to "Back", user_path(@post.author, @post), method: :get, class: "button" %>
-    <%= button_to "Add Comment", new_user_post_comment_path(@post.author, @post), method: :get, class: "button" %>
+    <p><%= button_to "Back", user_posts_path(@user), method: :get, class: "button" %></p>
     <div >
       <%= form_with model: @like,  url: "/users/#{params['user_id']}/posts/#{params['id']}/likes", method: :post , local: true do |form|%>
         <%= form.submit "Like", class: 'button' %>
       <% end %>
     </div>
+  </div>
+  <%# add comments %>
+  <div class="comment-info">
+    <h2>Comments</h2>
+    <% @post.recent_comments.each do |comment| %>
+      <%= render comment %>
+    <% end %>
+  </div>
+  <div class="comment-info">
+    <h2>Add a comment: </h2>
+    <%= render partial: "comments/form", locals: { comment:  Comment.new, user: @post.author, post:  @post} %>
   </div>
 </section>

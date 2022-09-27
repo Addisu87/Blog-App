@@ -23,6 +23,10 @@ RSpec.describe 'The show user page', type: :feature do
     expect(page).to have_content('Number of posts: 2')
   end
 
+  it 'shows the user\'s bio' do
+    expect(page).to have_content('Physics teacher')
+  end
+
   it "click on See all posts to redirect to user's post's index page" do
     click_link 'See all posts'
     expect(current_path).to eq user_posts_path(@user)

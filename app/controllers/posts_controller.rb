@@ -8,23 +8,27 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @user = current_user
   end
 
   def new
     @post = Post.new
+    @user = current_user
   end
 
   def create
     @post = Post.new(post_params)
-    @post.author_id = current_user.id
+    @user = current_user
+    @post.author = @user
+    @post.comments_counter = 0
+    @post.likes_counter = 0
 
-    if @post.save
-      @post.update_user_post_counter(params[:user_id])
-      redirect_to user_post_path(@user.id)
-      flash[:notice] = 'Your comment was successfully created'
-    else
-      redirect_to new_user_post_path(@user.id)
-      flash[:notice] = 'An error has occurred while creating the post'
+    respond_to do |format|
+      if @post.save
+        format.html { redirect_to user_post_url(@user, @post), notice: 'Post was successfully created.' }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -36,7 +40,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
 
     if @post.update(post_params)
-      redirect_to user_post_path(current_user, @post)
+      redirect_to user_post_path(@user, @post)
     else
       render :edit, status: :unprocessable_entity
     end
@@ -46,14 +50,14 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @author = @post.author
     @author.decrement!(:posts_counter)
-    @post.destroy!
+    @post.destroy
 
-    redirect_to user_posts_path(id: @author.id), notice: 'Post was successfully deleted'
+    redirect_to user_posts_url(id: @author.id), notice: 'Post was successfully deleted'
   end
 
   private
 
   def post_params
-    params.require(:post).permit(:tittle, :text, :comments_counter, :likes_counter)
+    params.require(:post).permit(:title, :text)
   end
 end
