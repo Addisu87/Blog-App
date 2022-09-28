@@ -18,6 +18,9 @@ gem 'devise'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootstrap', '~> 5.2.1', require: false
 
+# Bootstrap depends on jQurey
+gem 'jquery-rails'
+
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.4.3'
 
@@ -87,5 +90,4 @@ group :test do
   gem 'webdrivers'
 end
 
-# Bootstrap depends on jQurey
-gem 'jquery-rails'
+
