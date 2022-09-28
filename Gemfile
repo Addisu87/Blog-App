@@ -12,6 +12,12 @@ gem 'rails', '~> 7.0.4'
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem 'sprockets-rails'
 
+# Authentication 
+gem 'devise'
+
+# Reduces boot times through caching; required in config/boot.rb
+gem 'bootstrap', '~> 5.2.1', require: false
+
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.4.3'
 
@@ -78,11 +84,6 @@ group :test do
   gem 'webdrivers'
 end
 
-# Add the bootstrap_form gem
-gem 'bootstrap', '~> 5.2.1'
-
 # Bootstrap depends on jQurey
 gem 'jquery-rails'
 
-# Authentication 
-gem 'devise'
