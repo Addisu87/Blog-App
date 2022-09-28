@@ -71,7 +71,7 @@ group :development do
   gem 'web-console'
 
   # Preview email in the default browser instead of sending it.
-  gem "letter_opener"
+  gem 'letter_opener'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
@@ -89,4 +89,3 @@ end
 
 # Bootstrap depends on jQurey
 gem 'jquery-rails'
-
