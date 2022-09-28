@@ -79,4 +79,10 @@ group :test do
 end
 
 # Add the bootstrap_form gem
-gem 'bootstrap_form', '~> 5.1'
+gem 'bootstrap', '~> 5.2.1'
+
+# Bootstrap depends on jQurey
+gem 'jquery-rails'
+
+# Authentication 
+gem 'devise'
