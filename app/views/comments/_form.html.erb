@@ -1,8 +1,8 @@
 <section class="container">
   <%= form_with model: comment, url: user_post_comments_url(@user, @post), method: :post, class: "form-control" do |form| %>
     <div>
-      <%= form.label :text %><br>
-      <%= form.text_area :text, placeholder: "Type your comment here!", rows: 20, required: true,  class: "form-post-text" %>
+      <%= form.label :text, class: "form-label"%><br>
+      <%= form.text_area :text, placeholder: "Type your comment here!", rows: 10, required: true, class: "form-control m-2 w-50" %>
     </div>
     <div>
       <%= form.submit class: "button" %>
