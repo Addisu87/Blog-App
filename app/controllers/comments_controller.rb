@@ -6,12 +6,14 @@ class CommentsController < ApplicationController
     @comment.author = @user
     @comment.post = @post
     respond_to do |format|
-      if @comment.save!
-        format.html do
-          redirect_to user_post_url(@user, @post), notice: 'Comment was successfully created.'
+      format.html do
+        if @comment.save!
+          flash[:success] = 'Comment was successfully created.'
+          redirect_to user_post_url(@user, @post)
+        else
+          flash.now[:error] = 'Error: Comment could not be created.'
+          format.html { render :new, status: :unprocessable_entity }
         end
-      else
-        format.html { render :new, status: :unprocessable_entity }
       end
     end
   end

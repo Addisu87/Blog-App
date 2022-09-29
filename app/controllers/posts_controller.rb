@@ -1,6 +1,4 @@
 class PostsController < ApplicationController
-  http_basic_authenticate_with name: 'Addisu', password: '1987', except: %i[index show]
-
   def index
     @user = User.find(params[:user_id])
     @posts = @user.posts.includes(:comments)

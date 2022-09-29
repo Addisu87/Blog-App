@@ -12,6 +12,15 @@ gem 'rails', '~> 7.0.4'
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem 'sprockets-rails'
 
+# Authentication
+gem 'devise'
+
+# Reduces boot times through caching; required in config/boot.rb
+gem 'bootstrap', '~> 5.2.1', require: false
+
+# Bootstrap depends on jQurey
+gem 'jquery-rails'
+
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.4.3'
 
@@ -64,6 +73,9 @@ group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem 'web-console'
 
+  # Preview email in the default browser instead of sending it.
+  gem 'letter_opener'
+
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 
@@ -77,6 +89,3 @@ group :test do
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
-
-# Add the bootstrap_form gem
-gem 'bootstrap_form', '~> 5.1'
