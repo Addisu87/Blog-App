@@ -18,7 +18,7 @@
       <% end %>
     </div>
   <% end %>
-  <div class="button-user">
+  <div class="d-grid gap-2 d-md-flex justify-content-md-start m-4">
     <%= button_to 'Add New Post', new_user_post_path(id: @user.id), method: :get, class: "btn btn-success" %>
   </div>
 </section>
