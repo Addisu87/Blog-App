@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  load_and_authorize_resource
+
   def index
     @user = User.find(params[:user_id])
     @posts = @user.posts.includes(:comments)
@@ -7,11 +9,11 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @user = current_user
+    authorize! :read, @post
   end
 
   def new
     @post = Post.new
-    @user = current_user
   end
 
   def create

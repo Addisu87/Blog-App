@@ -7,4 +7,11 @@ Rails.application.routes.draw do
       resources :likes
     end
   end
+
+  
+
+  delete '/users/:user_id/posts/:id', to: 'posts#destroy'
+  get '/users/:user_id/posts/:post_id/comments/:id', to: 'comments#show'
+  delete '/users/:user_id/posts/:post_id/comments/:id', to: 'comments#destroy'
 end
+

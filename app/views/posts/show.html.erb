@@ -8,11 +8,11 @@
     <p><%= @post.text %></p>
   </div>
   <%# add linked buttons %>
-  <div class="button-user">
-    <p><%= button_to "Back", user_posts_path(@user), method: :get, class: "button" %></p>
+  <div class="d-grid gap-2 d-md-flex justify-content-md-start m-4">
+    <%= button_to "Back", user_posts_path(@user), method: :get, class:"btn btn-success", role: "button" %>
     <div >
       <%= form_with model: @like,  url: "/users/#{params['user_id']}/posts/#{params['id']}/likes", method: :post , local: true do |form|%>
-        <%= form.submit "Like", class: 'button' %>
+        <%= form.submit "Like", class:"btn btn-success", role: "button" %>
       <% end %>
     </div>
   </div>
@@ -21,6 +21,9 @@
     <h2>Comments</h2>
     <% @post.recent_comments.each do |comment| %>
       <%= render comment %>
+      <% if cannot? :destroy, comment %>
+        <%= button_to "Delete", user_post_comment_path(@user, comment), method: :delete, class: "btn btn-danger" %>
+      <% end %>
     <% end %>
   </div>
   <div class="comment-info">

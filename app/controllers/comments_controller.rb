@@ -22,7 +22,7 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = @post.comments.find(params[:id])
     @comment.destroy
-    redirect_to user_post_path(@post), status: :see_other
+    redirect_back(fallback_location: root_path)
   end
 
   private

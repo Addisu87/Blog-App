@@ -21,6 +21,9 @@ gem 'bootstrap', '~> 5.2.1', require: false
 # Bootstrap depends on jQurey
 gem 'jquery-rails'
 
+# Cancancan for authorization
+gem 'cancancan'
+
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.4.3'
 

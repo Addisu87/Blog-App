@@ -12,13 +12,13 @@
       <div class="user-recent-post">
         <p class="post-title"><strong>Post</strong> : <%= post.title %></p>
         <p class="post-text"><%= post.text %></p>
-        <h3 class="counters">Comments: <%= post.comments_counter %>
-          Likes: <%= post.likes_counter %>
-          <h3>
-          </div>
-        <% end %>
-      <% end %>
-      <div class="button-user">
-        <%= link_to "See all posts", user_posts_url(@user), class: "btn btn-success" %>
+        <h4 class="counters">Comments: <%= post.comments_counter %>
+          |  Likes: <%= post.likes_counter %>
+        </h4>
       </div>
-    </section>
+    <% end %>
+  <% end %>
+  <div class="button-user">
+    <%= link_to "See all posts", user_posts_url(@user), class: "btn btn-success" %>
+  </div>
+</section>
