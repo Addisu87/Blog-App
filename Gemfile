@@ -12,7 +12,7 @@ gem 'rails', '~> 7.0.4'
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem 'sprockets-rails'
 
-# Authentication 
+# Authentication
 gem 'devise'
 
 # Reduces boot times through caching; required in config/boot.rb
@@ -89,5 +89,3 @@ group :test do
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
-
-
