@@ -3,14 +3,14 @@
   <%= form.hidden_field :likes_counter, value: 0 %>
   <div class="mb-3">
     <%= form.label :title, class: "form-label"%>
-    <%= form.text_field :title, placeholder: "Title", required: true,  class: "form-control m-2 w-50"%>
+    <%= form.text_field :title, placeholder: "Title", required: true,  class: "form-control m-2 w-75"%>
     <%= post.errors.full_messages_for(:title).each do |msg| %>
       <div><%= msg%></div>
     <% end %>
   </div>
   <div class="mb-3">
     <%= form.label :text, class: "form-label"%>
-    <%= form.text_area :text, placeholder: "Type your post here!", rows: 5, required: true, class: "form-control m-2 w-50" %>
+    <%= form.text_area :text, placeholder: "Type your post here!", rows: 5, required: true, class: "form-control m-2 w-75" %>
     <%= post.errors.full_messages_for(:title).each do |msg| %>
       <div><%= msg%></div>
     <% end %>
