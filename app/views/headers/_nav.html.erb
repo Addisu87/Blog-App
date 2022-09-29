@@ -12,17 +12,17 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <% if user_signed_in? %>
-          <a class="nav-link active" aria-current="page"><%= button_to 'Sign out', destroy_user_session_path, method: :delete, class: "nav-link bg-transparent border-0" %></a>
-          <a class="nav-link" href="#"><%= link_to 'Edit profile', edit_user_registration_path, class: "nav-link" %>
+          <a class="nav-item active" aria-current="page"><%= button_to 'Sign out', destroy_user_session_path, method: :delete, class: "nav-link bg-transparent border-0" %></a>
+          <a class="nav-item"><%= link_to 'Edit profile', edit_user_registration_path, class: "nav-link" %>
           </a>
-          <a class="nav-link">
+          <a class="nav-item">
             <%= link_to 'Add post', new_user_post_path(current_user), class: "nav-link" %>
           </a>
         <% else %>
-          <a class="nav-link">
+          <a class="nav-item">
             <%= link_to 'Sign up', new_user_registration_path, class: "nav-link" %>
           </a>
-          <a class="nav-link">
+          <a class="nav-item">
             <%= link_to 'Sign in', new_user_session_path, class: "nav-link" %>
           </a>
         <% end %>

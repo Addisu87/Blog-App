@@ -1,5 +1,4 @@
 <section class="container">
-
   <div class="user-box">
     <img class="image-user" src=<%= @user.photo %> alt="user"/>
     <div class="user-info">
@@ -21,7 +20,7 @@
       <% end %>
       <div class="button-user">
         <button class="button">
-          <%= link_to "See all posts", user_posts_url(@user), class:"text-button" %>
+          <%= link_to "See all posts", user_posts_url(@user), class: "btn btn-success" %>
         </button>
       </div>
     </section>
