@@ -28,7 +28,7 @@ a {
 }
 
 .heading {
-  font-size: 30px;
+  font-size: 20px;
   font-weight: bold;
   color: #2f4858;
   text-align: left;
@@ -149,12 +149,6 @@ a {
   font-size: 16px;
   font-weight: normal;
   color: #2f4858;
-}
-
-.button-user {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .text-button {

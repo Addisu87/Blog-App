@@ -22,7 +22,7 @@
     <% @post.recent_comments.each do |comment| %>
       <%= render comment %>
       <% if cannot? :destroy, comment %>
-        <%= button_to "Delete", user_post_comment_path(@user, comment), method: :delete, class: "btn btn-danger" %>
+        <%= button_to "Delete", user_post_comment_path(@user, @post, comment), method: :delete, class: "btn btn-danger" %>
       <% end %>
     <% end %>
   </div>
