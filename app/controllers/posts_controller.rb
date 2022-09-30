@@ -1,11 +1,13 @@
 class PostsController < ApplicationController
   load_and_authorize_resource
 
+  # GET /posts
   def index
     @user = User.find(params[:user_id])
     @posts = @user.posts.includes(:comments)
   end
 
+  # GET /posts/1
   def show
     @post = Post.find(params[:id])
     @user = current_user
@@ -16,6 +18,7 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
+  # POST /posts
   def create
     @post = Post.new(post_params)
     @user = current_user
@@ -36,6 +39,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
+  # PATCH/PUT /posts/1
   def update
     @post = Post.find(params[:id])
 
@@ -46,6 +50,7 @@ class PostsController < ApplicationController
     end
   end
 
+  # DELETE /posts/1
   def destroy
     @post = Post.find(params[:id])
     @author = @post.author
@@ -57,6 +62,12 @@ class PostsController < ApplicationController
 
   private
 
+  # Use callbacks to share common setup or constraints between actions.
+  def set_post
+    @post = Post.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
   def post_params
     params.require(:post).permit(:title, :text)
   end

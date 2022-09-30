@@ -10,8 +10,15 @@ Rails.application.routes.draw do
     end
   end
 
-  
+  namespace :api do
+    namespace :users, only: [:index] do
+      resources :posts, only: [:index] do
+        resources :comments, only: [:index, :create]
+      end
+    end
+  end
 
+  
   delete '/users/:user_id/posts/:id', to: 'posts#destroy'
   get '/users/:user_id/posts/:post_id/comments/:id', to: 'comments#show'
   delete '/users/:user_id/posts/:post_id/comments/:id', to: 'comments#destroy'
