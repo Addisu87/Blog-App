@@ -24,11 +24,10 @@ gem 'jquery-rails'
 # Cancancan for authorization
 gem 'cancancan'
 
-# Build an API that is RESTful
-gem 'rswag'
-
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.4.3'
+
+gem 'rswag'
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem 'puma', '~> 5.0'
