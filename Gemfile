@@ -24,6 +24,9 @@ gem 'jquery-rails'
 # Cancancan for authorization
 gem 'cancancan'
 
+# Build an API that is RESTful
+gem 'rswag'
+
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.4.3'
 
