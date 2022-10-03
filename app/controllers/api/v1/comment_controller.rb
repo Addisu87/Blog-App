@@ -20,10 +20,10 @@ class Api::V1::CommentsController < ApplicationController
   end
 
   def create
-    @post = Post.find(params[:post_id])
-    @comment = Comment.new(text: params[:text], author: User.find(1), post: Post.find(2))
-    if @comment.save
-      render json: @comment
+    post = Post.find(params[:post_id])
+    comment = Comment.new(text: params[:text], author: @current_user, post:)
+    if comment.save
+      render json: comment
     else
       render json: { error: 'could not create it' }
     end

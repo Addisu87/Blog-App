@@ -18,7 +18,7 @@ class Api::V1::PostsController < ApplicationController
     post = @user.posts.find_by_id!(params[:id])
     render json: post
   rescue ActiveRecord::RecordNotFound
-    render json: { errors: 'Post not found' }, status: :not_found
+    render json: { errors: 'Posts not found' }, status: :not_found
   end
 
   def find_user

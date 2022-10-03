@@ -10,11 +10,14 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :api do
+  resources :users, param: :_user_id
+  post 'api/v1/auth/login', to: 'authentication#login'
+  
+  namespace :api, defaults: { format: :json } do
     namespace :v1 do 
-      resources :users, only: [:index] do
-        resources :posts, only: [:index, :show] do
-          resources :comments, only: [:index, :show, :create]
+      resources :users, only: %i[:index, :show] do
+        resources :posts, only: %i[:index, :show] do
+          resources :comments, only: %i[:index, :show, :create]
         end
       end
     end
