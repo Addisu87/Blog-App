@@ -15,12 +15,6 @@ gem 'sprockets-rails'
 # Authentication
 gem 'devise'
 
-# Reduces boot times through caching; required in config/boot.rb
-gem 'bootstrap', '~> 5.2.1', require: false
-
-# Bootstrap depends on jQurey
-gem 'jquery-rails'
-
 # Cancancan for authorization
 gem 'cancancan'
 
@@ -30,10 +24,9 @@ gem 'pg', '~> 1.4.3'
 # Use Json Web Token (JWT) for token based authentication
 gem 'jwt'
 
-# Use ActiveModel has_secure_password
-gem 'bcrypt', '~> 3.1.7'
-
 gem 'rswag'
+
+gem 'active_model_serializers', '~> 0.10.7'
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem 'puma', '~> 5.0'
@@ -57,13 +50,16 @@ gem 'jbuilder'
 # gem "kredis"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
-# gem "bcrypt", "~> 3.1.7"
+gem 'bcrypt', '~> 3.1.7'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
+
+# Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
+gem 'rack-cors'
 
 # Use Sass to process CSS
 # gem "sassc-rails"
@@ -91,7 +87,7 @@ group :development do
   # gem "rack-mini-profiler"
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
-  # gem "spring"
+  gem 'spring'
 end
 
 group :test do

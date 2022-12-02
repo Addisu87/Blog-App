@@ -1,32 +1,52 @@
-class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception, unless: -> { request.format.json? }
+class ApplicationController < ActionController::API
+  before_action :authorized
+  # SAMPLE
+  # >  payload = { beef: 'steak' }
 
-  before_action :configure_permitted_parameters, if: :devise_controller?
+  # > jwt = JWT.encode(payload, 'boeuf')
+  # => "eyJhbGciOiJIUzI1NiJ9.eyJiZWVmIjoic3RlYWsifQ._IBTHTLGX35ZJWTCcY30tLmwU9arwdpNVxtVU0NpAuI"
 
-  protected
+  # > decoded_hash = JWT.decode(jwt, 'boeuf')
+  # => [{"beef"=>"steak"}, {"alg"=>"HS256"}]
 
-  def configure_permitted_parameters
-    attributes = %i[name email password password_confirmation current_password]
-    devise_parameter_sanitizer.permit(:sign_up, keys: attributes)
+  # > data = decoded_hash[0]
+  # => {"beef"=>"steak"}
+
+  def encode_token(payload)
+    # {user_id: 2}
+    JWT.encode(payload, 'my_s3cr3t')
+    # issue a token, store payload in token
   end
 
-  def not_found
-    render json: { error: 'not_found' }
+  def auth_header
+    request.headers['Authorization'] # Bearer <token>
   end
 
-  def authorize_request
-    header = request.headers['Authorization']
-    if header
-      header = header.split.last
+  def decoded_token
+    return unless auth_header
 
-      begin
-        @decoded = JsonWebToken.decode(header)
-        @current_user = User.find_by_id!(@decoded[:user_id])
-      rescue ActiveRecord::RecordNotFound || JWT::DecodeError => e
-        render json: { error: e.message }, status: :unauthorized
-      end
-    else
-      render json: { error: 'Unauthorized User' }, status: :unauthorized
+    token = auth_header.split[1] # [Bearer, <token>]
+    begin
+      JWT.decode(token, 'my_s3cr3t', true, algorithm: 'HS256')
+      # JWT.decode => [{ "user_id"=>"2" }, { "alg"=>"HS256" }]
+    rescue JWT::DecodeError
+      nil
     end
+  end
+
+  def current_user
+    return unless decoded_token
+
+    user_id = decoded_token[0]['user_id']
+    # [{ "user_id"=>"2" }, { "alg"=>"HS256" }]
+    @user = User.find_by(id: user_id)
+  end
+
+  def logged_in?
+    !!current_user
+  end
+
+  def authorized
+    render json: { message: 'Please log in' }, status: :unauthorized unless logged_in?
   end
 end
