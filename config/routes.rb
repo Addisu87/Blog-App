@@ -9,12 +9,13 @@ Rails.application.routes.draw do
       resources :likes
     end
   end
+
+  post '/login', to: 'auth#create'
+  get '/profile', to: 'users#profile'
   
   namespace :api, defaults: { format: :json } do
     namespace :v1 do 
       resources :users, only: [:create] do
-        post '/login', to: 'auth#create'
-        get '/profile', to: 'users#profile'
         resources :posts, only: %i[:index, :show] do
           resources :comments, only: %i[:index, :show, :create]
         end
