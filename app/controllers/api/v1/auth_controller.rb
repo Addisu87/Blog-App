@@ -3,7 +3,7 @@ class Api::V1::AuthController < ApplicationController
 
   # POST /api/v1/login
   def create
-    @user = User.find_by(name: user_login_params[:name])
+    @user = User.find_by(name: user_login_params[:username])
     # @user.authenticate('password')
     if @user&.authenticate(user_login_params[:password])
       @token = encode_token({ user_id: @user.id })
@@ -18,6 +18,6 @@ class Api::V1::AuthController < ApplicationController
 
   def user_login_params
     # { user: { username: 'Chandler Bing', password: 'hi' } }
-    params.require(:user).permit(:name, :password)
+    params.require(:user).permit(:username, :password)
   end
 end

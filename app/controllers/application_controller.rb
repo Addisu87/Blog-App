@@ -29,7 +29,7 @@ class ApplicationController < ActionController::API
     begin
       JWT.decode(token, 'my_s3cr3t', true, algorithm: 'HS256')
       # JWT.decode => [{ "user_id"=>"2" }, { "alg"=>"HS256" }]
-    rescue JWT::DecodeError
+    rescue JWT::DecodeError || ActiveRecord::RecordNotFound
       nil
     end
   end
