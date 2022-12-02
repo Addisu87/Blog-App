@@ -5,7 +5,7 @@ info:
   version: v1
 paths: {}
 servers:
-- url: https://{defaultHost}
-  variables:
-    defaultHost:
-      default: www.example.com
+  - url: https://{defaultHost}
+    variables:
+      defaultHost:
+        default: http://127.0.0.1:3000/
